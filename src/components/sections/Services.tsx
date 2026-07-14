@@ -8,50 +8,43 @@ import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import { services } from "@/lib/data";
 import { waLink, telLink, site } from "@/lib/site";
 
+const blobColors = [
+  "bg-coral text-white",
+  "bg-lime text-ink",
+  "bg-lilac text-white",
+  "bg-leaf text-white",
+  "bg-ink text-cream",
+  "bg-coral text-white",
+];
+
+/** Six ways to learn, flat white cards with colored icon blobs. */
 export default function Services() {
   return (
-    <Section id="services" tone="paper">
+    <Section id="services" tone="soft">
       <Container>
-        {/* ---- Header row ---- */}
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeading
-            eyebrow="Our services"
-            title="Every way your child learns best"
-            description="Home tuition, live online classes, or classroom coaching in Prayagraj and Varanasi — plus a placement desk for schools and families hiring verified teachers. Same standards, whichever format you choose."
-          />
-          <Reveal delay={0.2}>
-            <Button
-              href={waLink("Hello, I'd like to know more about your tuition services.")}
-              variant="whatsapp"
-              wa
-              external
-              ariaLabel="Chat on WhatsApp about our services"
-            >
-              Chat on WhatsApp
-            </Button>
-          </Reveal>
-        </div>
+        <SectionHeading
+          title="Every Way Your Child Learns"
+          sticker="6 Formats"
+          stickerColor="lilac"
+          description="Home, online or classroom, same verified tutors, same monthly reports."
+        />
 
-        {/* ---- Services grid ---- */}
-        <StaggerGroup className="mt-14 grid gap-5 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
-          {services.map((service) => (
-            <StaggerItem key={service.title} className="h-full">
-              <article className="group h-full rounded-3xl border border-ink/8 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift">
-                <div
+        <StaggerGroup className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {services.map(({ icon: Icon, title, body, points }, i) => (
+            <StaggerItem key={title} className="h-full">
+              <article className="group h-full rounded-3xl bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift">
+                <span
                   aria-hidden="true"
-                  className="grid size-12 place-items-center rounded-2xl bg-board text-paper transition-transform duration-300 ease-out group-hover:scale-105"
+                  className={`grid size-13 place-items-center rounded-2xl transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-110 ${blobColors[i % blobColors.length]}`}
                 >
-                  <service.icon className="size-6" />
-                </div>
-                <h3 className="mt-6 font-display text-2xl text-board">{service.title}</h3>
-                <p className="mt-2.5 text-muted">{service.body}</p>
+                  <Icon className="size-6" />
+                </span>
+                <h3 className="mt-5 font-display text-2xl font-bold text-ink">{title}</h3>
+                <p className="mt-2 text-[0.95rem] leading-relaxed text-gray">{body}</p>
                 <ul className="mt-5 space-y-2">
-                  {service.points.map((point) => (
-                    <li
-                      key={point}
-                      className="flex gap-2 font-mono text-[0.78rem] uppercase tracking-[0.14em] text-ink/70"
-                    >
-                      <Check className="mt-0.5 size-3.5 shrink-0 text-marigold" aria-hidden="true" />
+                  {points.map((point) => (
+                    <li key={point} className="flex items-start gap-2 text-sm font-medium text-ink/75">
+                      <Check className="mt-0.5 size-4 shrink-0 text-leaf" aria-hidden="true" />
                       {point}
                     </li>
                   ))}
@@ -61,37 +54,27 @@ export default function Services() {
           ))}
         </StaggerGroup>
 
-        {/* ---- Mid-page CTA strip ---- */}
-        <Reveal className="mt-16">
-          <div className="relative flex flex-wrap items-center justify-between gap-6 overflow-hidden rounded-3xl bg-board p-8 text-paper md:p-10">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -right-12 -top-12 size-44 rounded-full bg-marigold/10 blur-2xl"
-            />
-            <div className="relative max-w-xl">
-              <p className="font-display text-2xl md:text-3xl">
-                Not sure which format fits? Ask us — it takes two minutes.
+        <Reveal delay={0.1}>
+          <div className="mt-12 flex flex-wrap items-center justify-between gap-6 rounded-3xl bg-ink p-8 md:p-10">
+            <div>
+              <p className="font-display text-2xl font-bold text-cream md:text-3xl">
+                Not sure which format fits?
               </p>
-              <p className="mt-1 text-sm text-mist">
-                Tell us the class, board and subjects — we&apos;ll suggest the right format the
-                same day.
+              <p className="mt-1 text-sm text-cream/70">
+                Ask us, it takes two minutes and costs nothing.
               </p>
             </div>
-            <div className="relative flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap gap-3">
               <Button
-                href={waLink("Hello, I need help choosing between home/online/group tuition.")}
+                href={waLink("Hello, I need help choosing between home, online and group tuition.")}
                 variant="whatsapp"
+                size="md"
                 wa
                 external
-                ariaLabel="Chat on WhatsApp to choose a tuition format"
               >
                 Chat on WhatsApp
               </Button>
-              <Button
-                href={telLink}
-                variant="outline-dark"
-                ariaLabel={`Call ${site.phoneDisplay}`}
-              >
+              <Button href={telLink} variant="dark" size="md">
                 Call {site.phoneDisplay}
               </Button>
             </div>

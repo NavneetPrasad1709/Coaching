@@ -16,19 +16,17 @@ import { cn } from "@/lib/utils";
 
 /* ---------------- Shared field styles ---------------- */
 
-const labelCls =
-  "font-mono text-[0.7rem] uppercase tracking-[0.16em] text-muted mb-2 block";
+const labelCls = "mb-2 block text-xs font-bold uppercase tracking-wide text-gray";
 
 const inputCls =
-  "w-full rounded-xl border border-ink/15 bg-paper/60 px-4 py-3 text-[0.95rem] text-ink placeholder:text-muted outline-none transition focus:border-board focus:ring-2 focus:ring-board/70";
+  "w-full rounded-xl border border-line bg-cream-soft px-4 py-3 text-[0.95rem] text-ink placeholder:text-gray outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/15";
 
 const pillBase =
-  "cursor-pointer select-none rounded-full border px-5 py-3 font-mono text-[0.78rem] uppercase tracking-[0.14em] transition-all duration-200 focus-within:ring-2 focus-within:ring-board/70 focus-within:ring-offset-1";
+  "cursor-pointer select-none rounded-full border px-5 py-3 text-sm font-semibold transition-all duration-200 focus-within:ring-2 focus-within:ring-ink/40 focus-within:ring-offset-1";
 
-const pillOff =
-  "border-ink/15 bg-paper/60 text-muted hover:border-ink/35 hover:text-ink";
+const pillOff = "border-line bg-cream-soft text-gray hover:border-ink/40 hover:text-ink";
 
-const pillOn = "border-board bg-board text-paper";
+const pillOn = "border-ink bg-ink text-cream";
 
 /* ---------------- Form state ---------------- */
 
@@ -69,7 +67,7 @@ function normalisePhone(raw: string): string | null {
 function FieldError({ id, message }: { id: string; message?: string }) {
   if (!message) return null;
   return (
-    <p id={id} className="text-rule-deep text-xs mt-1.5" role="alert">
+    <p id={id} className="mt-1.5 text-xs font-semibold text-coral" role="alert">
       {message}
     </p>
   );
@@ -81,7 +79,7 @@ export default function Contact() {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [errors, setErrors] = useState<Partial<Record<ErrorKey, string>>>({});
   const [sent, setSent] = useState(false);
-  // Kept so the success screen can re-offer the link — window.open is blocked
+  // Kept so the success screen can re-offer the link, window.open is blocked
   // in Instagram/Facebook in-app browsers, our main ad traffic source.
   const [waHref, setWaHref] = useState("");
 
@@ -108,7 +106,7 @@ export default function Contact() {
 
     const area = [form.locality.trim(), form.city].filter(Boolean).join(", ");
     const subjectsPart = form.subjects.trim() ? `, ${form.subjects.trim()}` : "";
-    // Written in the parent's voice — this is the message THEY press send on.
+    // Written in the parent's voice, this is the message THEY press send on.
     const message =
       `Hello Santosh Sir, I'm ${form.parentName.trim()}. ` +
       `I'm looking for ${form.tuitionType.toLowerCase()} for ${form.studentName.trim() || "my child"} ` +
@@ -116,11 +114,11 @@ export default function Contact() {
       `My number is ${phone}. Please share a free demo slot.`;
 
     // TODO(integration): POST the payload to a server action / CRM endpoint here
-    // (e.g. await submitEnquiry(form)) before — or instead of — the WhatsApp handoff.
+    // (e.g. await submitEnquiry(form)) before, or instead of, the WhatsApp handoff.
     const href = waLink(message);
     setWaHref(href);
     setSent(true);
-    // In-app browsers (Instagram/Facebook) often block window.open — the
+    // In-app browsers (Instagram/Facebook) often block window.open, the
     // success screen's primary button re-offers the same link either way.
     window.open(href, "_blank", "noopener,noreferrer");
   }
@@ -133,7 +131,7 @@ export default function Contact() {
   }
 
   // Reduced motion handled globally by MotionProvider (transform is dropped,
-  // opacity still cross-fades) — keep the tree identical on server and client.
+  // opacity still cross-fades), keep the tree identical on server and client.
   const swap = {
     initial: { opacity: 0, y: 14 },
     animate: { opacity: 1, y: 0 },
@@ -142,14 +140,16 @@ export default function Contact() {
   } as const;
 
   return (
-    <Section id="enquiry" tone="paper-deep">
+    <Section id="enquiry" tone="soft">
       <Container>
         <div className="grid items-start gap-12 lg:grid-cols-12">
           {/* ---- Left: heading + contact methods ---- */}
           <div className="lg:col-span-5">
             <SectionHeading
-              eyebrow="Enquire now"
-              title="Tell us about your child"
+              align="left"
+              title="Tell Us About Your Child"
+              sticker="2 min"
+              stickerColor="lime"
               description="Share the basics and we'll call you back the same day with a tutor shortlist and a demo slot."
             />
 
@@ -159,7 +159,7 @@ export default function Contact() {
                   href={waLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 rounded-2xl border border-ink/8 bg-white p-5 transition hover:shadow-card"
+                  className="flex items-center gap-4 rounded-2xl bg-white p-5 shadow-card transition hover:shadow-lift"
                 >
                   <span
                     className="grid size-11 shrink-0 place-items-center rounded-full bg-wa/10 text-wa"
@@ -168,11 +168,11 @@ export default function Contact() {
                     <WhatsAppIcon className="size-5" />
                   </span>
                   <span>
-                    <h3 className="text-[0.95rem] font-semibold text-ink">
-                      Fastest — Chat on WhatsApp
+                    <h3 className="text-[0.95rem] font-bold text-ink">
+                      Fastest, Chat on WhatsApp
                     </h3>
-                    <p className="mt-0.5 text-sm text-muted">
-                      Replies within minutes, 8 AM–9 PM
+                    <p className="mt-0.5 text-sm text-gray">
+                      Replies within minutes, 8 AM-9 PM
                     </p>
                   </span>
                 </a>
@@ -181,37 +181,38 @@ export default function Contact() {
               <Reveal delay={0.18}>
                 <a
                   href={telLink}
-                  className="flex items-center gap-4 rounded-2xl border border-ink/8 bg-white p-5 transition hover:shadow-card"
+                  className="flex items-center gap-4 rounded-2xl bg-white p-5 shadow-card transition hover:shadow-lift"
                 >
                   <span
-                    className="grid size-11 shrink-0 place-items-center rounded-full bg-board/8 text-board"
+                    className="grid size-11 shrink-0 place-items-center rounded-full bg-cream text-ink"
                     aria-hidden="true"
                   >
                     <Phone className="size-5" />
                   </span>
                   <span>
-                    <h3 className="text-[0.95rem] font-semibold text-ink">
+                    <h3 className="text-[0.95rem] font-bold text-ink">
                       Call {site.phoneDisplay}
                     </h3>
-                    <p className="mt-0.5 text-sm text-muted">Mon–Sat</p>
+                    <p className="mt-0.5 text-sm text-gray">Mon-Sat</p>
                   </span>
                 </a>
               </Reveal>
 
               <Reveal delay={0.26}>
-                <div className="flex items-center gap-4 rounded-2xl border border-ink/8 bg-white p-5 transition hover:shadow-card">
+                <div className="flex items-center gap-4 rounded-2xl bg-white p-5 shadow-card transition hover:shadow-lift">
                   <span
-                    className="grid size-11 shrink-0 place-items-center rounded-full bg-board/8 text-board"
+                    className="grid size-11 shrink-0 place-items-center rounded-full bg-cream text-ink"
                     aria-hidden="true"
                   >
                     <MapPin className="size-5" />
                   </span>
                   <span>
-                    <h3 className="text-[0.95rem] font-semibold text-ink">
+                    <h3 className="text-[0.95rem] font-bold text-ink">
                       Prayagraj &amp; Varanasi
                     </h3>
-                    <p className="mt-0.5 text-sm text-muted">
-                      Home tutors across both cities · online everywhere
+                    <p className="mt-0.5 text-sm text-gray">
+                      Civil Lines, Naini, Jhunsi, Lanka, Sigra, Bhelupur &amp; more · online
+                      everywhere
                     </p>
                   </span>
                 </div>
@@ -222,19 +223,19 @@ export default function Contact() {
           {/* ---- Right: the lead form card ---- */}
           <div className="lg:col-span-7">
             <Reveal delay={0.12}>
-              <div className="rounded-3xl border border-ink/8 bg-white p-7 shadow-lift md:p-9">
+              <div className="rounded-3xl bg-white p-7 shadow-lift md:p-9">
                 <AnimatePresence mode="wait" initial={false}>
                   {sent ? (
                     <motion.div key="success" {...swap}>
                       <div className="flex flex-col items-center gap-4 py-14 text-center">
                         <CheckCircle className="size-10 text-wa" aria-hidden="true" />
-                        <h3 className="font-display text-2xl font-medium text-board">
+                        <h3 className="font-display text-2xl font-bold text-ink">
                           One step left
                         </h3>
-                        <p className="max-w-sm leading-relaxed text-muted">
+                        <p className="max-w-sm leading-relaxed text-gray">
                           WhatsApp has opened with your details. Press send there and
-                          we&apos;ll reply with a tutor shortlist and a demo slot —
-                          usually within minutes, 8 AM–9 PM.
+                          we&apos;ll reply with a tutor shortlist and a demo slot ,
+                          usually within minutes, 8 AM-9 PM.
                         </p>
                         <Button
                           href={waHref}
@@ -455,8 +456,8 @@ export default function Contact() {
                         >
                           Request a callback &amp; demo
                         </Button>
-                        <p className="max-w-55 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">
-                          Opens WhatsApp with your details prefilled — you just press
+                        <p className="max-w-60 text-xs font-medium text-gray">
+                          Opens WhatsApp with your details prefilled, you just press
                           send. No spam.
                         </p>
                       </div>

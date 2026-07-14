@@ -1,49 +1,53 @@
+import { Star } from "lucide-react";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
-import Avatar from "@/components/ui/Avatar";
+import Reveal from "@/components/ui/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import { reviews } from "@/lib/data";
-import { cn } from "@/lib/utils";
 
-/** Parent voices from WhatsApp — the same themes repeat: punctuality, follow-up, marks. */
+/** Big lime quote panel + three flat cards, the template's testimonial block. */
 export default function ParentReviews() {
+  const [featured, ...rest] = reviews;
+
   return (
-    <Section tone="paper">
+    <Section tone="soft">
       <Container>
         <SectionHeading
-          eyebrow="Parent reviews"
-          title="What parents tell us on WhatsApp"
-          description="Punctuality, follow-up and marks — the three things parents mention most."
+          title="What Parents Tell Us"
+          sticker="On WhatsApp"
+          stickerColor="coral"
+          description="Punctuality, follow-up and marks, the three things parents mention most."
         />
 
-        <StaggerGroup className="mt-14 grid max-w-5xl gap-5 sm:grid-cols-2">
-          {reviews.map((review, i) => (
-            <StaggerItem
-              key={review.name}
-              className={cn(
-                "rounded-3xl border border-ink/8 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift",
-                i % 2 === 1 && "lg:mt-8"
-              )}
-            >
-              <figure>
-                <span
-                  aria-hidden="true"
-                  className="block select-none font-display text-6xl leading-none text-marigold/60"
-                >
-                  &ldquo;
-                </span>
-                <blockquote className="mt-2">
-                  <p className="text-[1.02rem] leading-relaxed text-ink/85">{review.quote}</p>
+        <Reveal delay={0.1}>
+          <figure className="mx-auto mt-14 max-w-4xl rounded-3xl bg-lime p-8 sm:p-12">
+            <p className="mb-5 flex justify-center gap-1 text-leaf">
+              <span className="sr-only">Rated 5 out of 5</span>
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="size-5 fill-current" aria-hidden="true" />
+              ))}
+            </p>
+            <blockquote className="text-center font-display text-2xl font-semibold leading-snug text-ink sm:text-3xl">
+              &ldquo;{featured.quote}&rdquo;
+            </blockquote>
+            <figcaption className="mt-6 text-center">
+              <p className="font-bold text-ink">{featured.name}</p>
+              <p className="mt-0.5 text-sm text-ink/70">{featured.detail}</p>
+            </figcaption>
+          </figure>
+        </Reveal>
+
+        <StaggerGroup className="mt-6 grid gap-5 md:grid-cols-3">
+          {rest.map((review) => (
+            <StaggerItem key={review.name} className="h-full">
+              <figure className="flex h-full flex-col rounded-3xl bg-white p-7 shadow-card">
+                <blockquote className="flex-1 leading-relaxed text-ink/85">
+                  &ldquo;{review.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-6 flex items-center gap-3">
-                  <Avatar name={review.name} />
-                  <div>
-                    <h3 className="text-sm font-semibold text-board">{review.name}</h3>
-                    <p className="mt-0.5 font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">
-                      {review.detail}
-                    </p>
-                  </div>
+                <figcaption className="mt-5 border-t border-line pt-4">
+                  <p className="text-sm font-bold text-ink">{review.name}</p>
+                  <p className="mt-0.5 text-xs text-gray">{review.detail}</p>
                 </figcaption>
               </figure>
             </StaggerItem>

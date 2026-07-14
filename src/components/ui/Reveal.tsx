@@ -16,7 +16,7 @@ type Props = {
 /**
  * Scroll-triggered fade-up. The default entrance for any block of content.
  * Reduced motion is handled globally by MotionProvider (MotionConfig
- * reducedMotion="user") — do not branch the rendered tree here, it would
+ * reducedMotion="user"), do not branch the rendered tree here, it would
  * hydrate differently on the server.
  */
 export default function Reveal({ children, className, delay = 0, y = 28, blur = false }: Props) {

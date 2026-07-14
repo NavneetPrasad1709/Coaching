@@ -6,44 +6,74 @@ import Reveal from "@/components/ui/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import { trustPoints } from "@/lib/data";
 
-/** Six written promises — the trust contract, stated plainly. */
+/** Six promises typeset like the printed agreement every family signs. */
 export default function TrustPillars() {
   return (
-    <Section tone="white">
+    <Section tone="soft">
       <Container>
         <SectionHeading
-          align="center"
-          eyebrow="Why parents trust us"
-          title="Six promises, in writing"
-          description="The rules we hold ourselves to for every family, every month."
-          className="max-w-2xl"
+          title="Six Promises, in Writing"
+          sticker="Signed"
+          stickerColor="lilac"
+          description="Not marketing copy, the working rules of the agreement every family signs before classes begin."
         />
 
-        <StaggerGroup className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {trustPoints.map((point) => (
-            <StaggerItem
-              key={point.title}
-              className="group h-full rounded-3xl border border-ink/8 bg-paper p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
-            >
+        <Reveal delay={0.1} className="mx-auto mt-14 max-w-4xl">
+          <div className="overflow-hidden rounded-3xl bg-white shadow-lift">
+            <div className="flex items-center justify-between gap-4 border-b border-line px-7 py-5 sm:px-10">
+              <p className="text-xs font-bold uppercase tracking-widest text-gray">
+                Written agreement, every family, every month
+              </p>
               <span
                 aria-hidden="true"
-                className="grid size-12 place-items-center rounded-2xl border border-ink/8 bg-white text-board transition-colors duration-300 group-hover:border-marigold/30 group-hover:bg-marigold/10"
+                className="grid size-9 shrink-0 place-items-center rounded-full bg-lime font-display text-sm font-bold text-ink"
               >
-                <point.icon className="size-6" />
+                SS
               </span>
-              <h3 className="mt-5 text-xl font-semibold text-board">{point.title}</h3>
-              <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{point.body}</p>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+            </div>
 
-        <Reveal delay={0.1}>
-          <p className="mt-10 text-center font-mono text-[0.75rem] uppercase tracking-[0.14em] text-muted">
-            Every promise above is part of the written agreement you sign — nothing verbal.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <Button href="#enquiry" variant="primary" size="lg" arrow>
-              Book a free demo class
+            <StaggerGroup className="grid sm:grid-cols-2">
+              {trustPoints.map((point, i) => (
+                <StaggerItem
+                  key={point.title}
+                  className={
+                    "border-line px-7 py-7 sm:px-10 " +
+                    (i < trustPoints.length - 2 ? "border-b " : "") +
+                    (i % 2 === 0 ? "sm:border-r " : "") +
+                    (i >= trustPoints.length - 2 ? "max-sm:border-b max-sm:last:border-b-0 " : "")
+                  }
+                >
+                  <div className="flex items-baseline gap-4">
+                    <span aria-hidden="true" className="font-display text-sm font-extrabold text-coral">
+                      {String(i + 1).padStart(2, "0")}.
+                    </span>
+                    <div>
+                      <h3 className="font-display text-lg font-bold text-ink">{point.title}</h3>
+                      <p className="mt-1.5 text-[0.95rem] leading-relaxed text-gray">{point.body}</p>
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+
+            <div className="flex flex-wrap items-end justify-between gap-4 border-t border-line bg-cream-soft px-7 py-6 sm:px-10">
+              <p className="text-xs font-semibold uppercase tracking-widest text-gray">
+                Nothing verbal, every clause is on the paper you keep
+              </p>
+              <div className="text-right">
+                <p className="font-display text-2xl font-bold italic text-ink">S. Singh</p>
+                <p className="mt-0.5 text-[0.65rem] font-semibold uppercase tracking-widest text-gray">
+                  On behalf of every tutor we place
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <div className="mt-10 flex justify-center">
+            <Button href="#enquiry" variant="primary" size="lg" plus>
+              Book a Free Demo Class
             </Button>
           </div>
         </Reveal>

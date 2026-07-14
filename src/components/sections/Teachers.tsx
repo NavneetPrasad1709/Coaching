@@ -1,96 +1,71 @@
+import Image from "next/image";
 import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
-import Avatar from "@/components/ui/Avatar";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Stagger";
 import { teachers } from "@/lib/data";
 import { waLink } from "@/lib/site";
 
-/** The people behind the results — founder first, then the subject leads. */
-export default function Teachers() {
-  const featured = teachers.find((t) => t.featured);
-  const others = teachers.filter((t) => !t.featured);
+// TODO(client): replace with real photos of each tutor.
+const portraits = [
+  "/images/santosh.jpg",
+  "/images/tutor.jpg",
+  "/images/arvind.jpg",
+  "/images/neha.jpg",
+];
 
+/** Portrait cards. Photos are representative placeholders until the client supplies real ones. */
+export default function Teachers() {
   return (
-    <Section id="teachers" tone="white">
+    <Section id="teachers" tone="cream">
       <Container>
         <SectionHeading
-          eyebrow="Meet the teachers"
-          title="Taught by people who love the subject"
-          description="Every tutor’s degree is verified and every teaching demo is reviewed before they meet a student. The profiles shown here are representative — you’ll meet your child’s shortlisted tutor at the free demo."
+          title="Meet Our Teachers"
+          sticker="Verified"
+          stickerColor="leaf"
+          description="Degrees checked, demos reviewed, references called, before they ever meet your child. Profiles shown are representative."
         />
 
-        {/* ---- Featured: Santosh Singh ---- */}
-        {featured && (
-          <Reveal className="mt-14">
-            <article className="grid items-start gap-7 rounded-3xl border border-ink/8 bg-paper p-8 shadow-card md:grid-cols-[auto_1fr]">
-              <Avatar name={featured.name} className="size-24 text-3xl" />
-
-              <div>
-                <h3 className="font-display text-3xl font-medium tracking-tight text-board">
-                  {featured.name}
-                </h3>
-                <p className="mt-1 font-medium text-muted">{featured.role}</p>
-                <p className="mt-4 max-w-xl leading-relaxed text-ink/80">{featured.note}</p>
-
-                <ul className="mt-5 flex flex-wrap gap-2" aria-label="Qualifications">
-                  {[featured.credentials, featured.experience].map((chip) => (
-                    <li
-                      key={chip}
-                      className="rounded-full border border-ink/12 bg-white px-3.5 py-1.5 font-mono text-xs text-ink"
-                    >
-                      {chip}
-                    </li>
-                  ))}
-                </ul>
-
-                <Button
-                  href={waLink(
-                    "Hello Santosh Sir, I would like to speak with you about tuition for my child."
-                  )}
-                  variant="whatsapp"
-                  size="md"
-                  wa
-                  external
-                  className="mt-6"
-                >
-                  Talk to Santosh Sir
-                </Button>
-              </div>
-            </article>
-          </Reveal>
-        )}
-
-        {/* ---- Subject leads ---- */}
-        <StaggerGroup className="mt-5 grid gap-5 md:grid-cols-3">
-          {others.map((teacher) => (
-            <StaggerItem
-              key={teacher.name}
-              className="rounded-3xl border border-ink/8 bg-white p-7 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
-            >
-              <Avatar name={teacher.name} className="size-16 text-xl" />
-
-              <h3 className="mt-5 font-display text-2xl font-medium text-board">
-                {teacher.name}
-              </h3>
-              <p className="mt-1 text-sm text-muted">{teacher.role}</p>
-              <p className="mt-3 text-[0.92rem] leading-relaxed text-muted">{teacher.note}</p>
-
-              <ul className="mt-4 flex flex-wrap gap-2" aria-label="Qualifications">
-                {[teacher.credentials, teacher.experience].map((chip) => (
-                  <li
-                    key={chip}
-                    className="rounded-full border border-ink/12 bg-paper-deep px-3.5 py-1.5 font-mono text-xs text-ink"
-                  >
-                    {chip}
-                  </li>
-                ))}
-              </ul>
+        <StaggerGroup className="mt-14 grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          {teachers.map((teacher, i) => (
+            <StaggerItem key={teacher.name}>
+              <figure className="group text-center transition-transform duration-300 hover:-translate-y-1.5">
+                <div className="overflow-hidden rounded-[28px]">
+                  <Image
+                    src={portraits[i]}
+                    alt={`${teacher.name}, ${teacher.role}`}
+                    width={640}
+                    height={780}
+                    className="aspect-4/5 w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                </div>
+                <figcaption className="mt-5">
+                  <p className="font-display text-xl font-bold text-ink">{teacher.name}</p>
+                  <p className="mt-0.5 text-sm font-medium text-gray">{teacher.role}</p>
+                  <p className="mt-1.5 text-xs font-semibold uppercase tracking-wide text-gray/80">
+                    {teacher.credentials} · {teacher.experience}
+                  </p>
+                </figcaption>
+              </figure>
             </StaggerItem>
           ))}
         </StaggerGroup>
+
+        <Reveal delay={0.1}>
+          <div className="mt-12 text-center">
+            <Button
+              href={waLink("Hello Santosh Sir, I would like to speak with you about tuition for my child.")}
+              variant="whatsapp"
+              size="lg"
+              wa
+              external
+            >
+              Talk to Santosh Sir
+            </Button>
+          </div>
+        </Reveal>
       </Container>
     </Section>
   );

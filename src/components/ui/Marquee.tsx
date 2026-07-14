@@ -14,9 +14,12 @@ type Props = {
  */
 export default function Marquee({ children, className, duration = 42, reverse = false }: Props) {
   return (
-    <div className={cn("mask-fade-x overflow-hidden", className)}>
+    <div className={cn("group mask-fade-x overflow-hidden", className)}>
       <div
-        className={cn("flex w-max animate-marquee", reverse && "[animation-direction:reverse]")}
+        className={cn(
+          "flex w-max animate-marquee group-hover:[animation-play-state:paused]",
+          reverse && "[animation-direction:reverse]"
+        )}
         style={{ "--marquee-duration": `${duration}s` } as React.CSSProperties}
       >
         <div className="flex shrink-0 items-center">{children}</div>

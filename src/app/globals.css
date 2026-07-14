@@ -1,37 +1,34 @@
 @import "tailwindcss";
 
 /*
-  Design system — "The Ruled Page"
-  Identity: the Indian school notebook, executed with premium restraint.
-  Baseline rules, a single red margin line, report-card mono numerals.
+  Design system — premium reskin for Santosh Singh Academy.
+  Porcelain ground, charcoal ink, one deep-emerald accent with muted
+  rust/plum details. Single type family (Instrument Sans), weight-driven
+  hierarchy, flat white cards, black pill CTAs. Photos carry the warmth.
 */
 
 @theme inline {
   /* Palette */
-  --color-paper: #f6f5ee; /* green-tinted ivory page ground */
-  --color-paper-deep: #edecdf; /* darker ivory for alternate sections */
-  --color-board: #0e3826; /* deep chalkboard / university green */
-  --color-board-deep: #092a1c; /* footer & gradient stops */
-  --color-board-soft: #1b4f39; /* raised surfaces on dark sections */
-  --color-ink: #1a2620; /* near-black body text, green cast */
-  --color-muted: #5a6b61; /* secondary text on light */
-  --color-mist: #a8bcae; /* secondary text on dark */
-  --color-marigold: #e8a428; /* CTA accent */
-  --color-marigold-deep: #cf8d13; /* CTA hover */
-  --color-rule: #c75c4a; /* notebook margin red — hairlines only */
-  --color-rule-deep: #a34534; /* red for small text (AA contrast on paper) */
-  --color-wa: #25d366; /* WhatsApp functional green */
+  --color-cream: #f6f5f1; /* page ground */
+  --color-cream-soft: #fcfbf8; /* soft card / alt section */
+  --color-ink: #16171b; /* near-black headings + buttons */
+  --color-gray: #5d6066; /* body text */
+  --color-lime: #e5eee6; /* primary CTA */
+  --color-lime-deep: #d8e5da; /* CTA hover */
+  --color-leaf: #0e6f4f; /* green sticker / accents */
+  --color-coral: #a6543c; /* sticker */
+  --color-lilac: #6c5f79; /* sticker */
+  --color-line: rgb(22 23 27 / 0.1); /* hairlines */
+  --color-wa: #25d366;
   --color-wa-deep: #1da851;
 
-  /* Type roles */
-  --font-display: var(--font-spectral);
-  --font-sans: var(--font-schibsted);
-  --font-mono: var(--font-spline-mono);
+  /* Type roles — one family, hierarchy by weight and tracking */
+  --font-display: var(--font-instrument);
+  --font-sans: var(--font-instrument);
 
-  /* Elevation */
-  --shadow-card: 0 1px 2px rgb(14 56 38 / 0.05), 0 10px 28px -10px rgb(14 56 38 / 0.12);
-  --shadow-lift: 0 2px 4px rgb(14 56 38 / 0.06), 0 24px 48px -16px rgb(14 56 38 / 0.22);
-  --shadow-glow: 0 8px 32px -8px rgb(232 164 40 / 0.45);
+  /* Elevation — the template is flat; shadows stay whisper-quiet */
+  --shadow-card: 0 1px 2px rgb(22 23 27 / 0.04), 0 10px 24px -12px rgb(22 23 27 / 0.1);
+  --shadow-lift: 0 2px 4px rgb(22 23 27 / 0.05), 0 18px 40px -16px rgb(22 23 27 / 0.16);
 
   /* Marquee */
   --animate-marquee: marquee var(--marquee-duration, 42s) linear infinite;
@@ -40,18 +37,10 @@
     to { transform: translateX(-50%); }
   }
 
-  /* Gentle float for hero ornaments */
   --animate-float: float 7s ease-in-out infinite;
   @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-12px); }
-  }
-
-  /* Hero scroll cue (CSS so it pauses under display:none and reduced motion) */
-  --animate-scroll-cue: scroll-cue 2.2s ease-in-out infinite;
-  @keyframes scroll-cue {
-    from { transform: translateY(-16px); }
-    to { transform: translateY(48px); }
+    50% { transform: translateY(-10px); }
   }
 }
 
@@ -60,7 +49,7 @@ html {
 }
 
 body {
-  background: var(--color-paper);
+  background: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -69,61 +58,19 @@ body {
 }
 
 ::selection {
-  background: var(--color-marigold);
-  color: var(--color-board-deep);
+  background: var(--color-lime);
+  color: var(--color-ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-rule-deep); /* 5.5:1 on paper/white */
+  outline: 2px solid var(--color-ink);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
-/* On dark green surfaces the red outline fails contrast — use marigold. */
-.bg-board :focus-visible,
-.bg-board-deep :focus-visible,
-.bg-board-soft :focus-visible {
-  outline-color: var(--color-marigold);
-}
-
-/* ---- Signature: ruled notebook background ---- */
-.ruled {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 63px,
-    rgb(14 56 38 / 0.055) 63px,
-    rgb(14 56 38 / 0.055) 64px
-  );
-}
-
-.ruled-dark {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 63px,
-    rgb(246 245 238 / 0.045) 63px,
-    rgb(246 245 238 / 0.045) 64px
-  );
-}
-
-/* Red margin line — apply to a relative section; visible lg+ */
-.margin-rule::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: clamp(1.5rem, 6vw, 6.5rem);
-  width: 1px;
-  background: rgb(199 92 74 / 0.35);
-  pointer-events: none;
-  display: none;
-}
-
-@media (min-width: 1024px) {
-  .margin-rule::before {
-    display: block;
-  }
+/* Chunky display headings */
+.font-display {
+  letter-spacing: -0.025em;
 }
 
 /* Edge fade for marquees */
@@ -131,12 +78,11 @@ body {
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
-/* Display type defaults */
-.font-display {
-  letter-spacing: -0.015em;
+/* Arch shape for portraits (kidocare teacher cards) */
+.arch {
+  border-radius: 999px 999px 24px 24px;
 }
 
-/* Reduced motion: kill decorative animation globally */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

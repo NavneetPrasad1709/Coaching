@@ -1,7 +1,10 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
+import MobileCtaBar from "@/components/layout/MobileCtaBar";
 import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import ParentPromises from "@/components/sections/ParentPromises";
 import WhyChoose from "@/components/sections/WhyChoose";
 import Services from "@/components/sections/Services";
 import ClassesBoards from "@/components/sections/ClassesBoards";
@@ -28,7 +31,7 @@ const jsonLd = {
       telephone: site.phoneE164,
       email: site.email,
       description:
-        "Home, online and offline tuition for Classes 5–12 (CBSE & ICSE) with verified tutors in Prayagraj and Varanasi. Free demo class for every student.",
+        "Home, online and offline tuition for Classes 5-12 (CBSE & ICSE) with verified tutors in Prayagraj and Varanasi. Free demo class for every student.",
       areaServed: site.cities.map((city) => ({ "@type": "City", name: city })),
     },
     {
@@ -53,20 +56,25 @@ export default function Home() {
       <main id="main">
         <Hero />
         <WhyChoose />
-        <Services />
+        <About />
+        <ParentPromises />
         <ClassesBoards />
+        <Services />
         <Subjects />
         <HowItWorks />
         <Teachers />
-        <SuccessStories />
         <ParentReviews />
+        <SuccessStories />
         <TrustPillars />
         <Faq />
         <Contact />
         <FinalCta />
       </main>
       <Footer />
+      {/* Spacer so the fixed mobile bar never covers footer content */}
+      <div className="h-20 lg:hidden" aria-hidden="true" />
       <WhatsAppFloat />
+      <MobileCtaBar />
     </>
   );
 }

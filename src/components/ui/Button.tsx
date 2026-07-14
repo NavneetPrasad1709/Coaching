@@ -1,21 +1,16 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { WhatsAppIcon } from "./icons";
 
 const variants = {
-  /** Marigold — the one primary action per view. */
-  primary:
-    "bg-marigold text-board-deep hover:bg-marigold-deep hover:shadow-glow",
-  /** Board green — primary on light when marigold is already in use. */
-  dark: "bg-board text-paper hover:bg-board-deep",
-  /** Quiet secondary on light backgrounds. */
-  outline:
-    "border border-ink/20 bg-transparent text-ink hover:border-ink/45 hover:bg-white",
-  /** Quiet secondary on dark backgrounds. */
-  "outline-dark":
-    "border border-paper/30 bg-transparent text-paper hover:border-paper/70 hover:bg-paper/10",
-  /** WhatsApp-branded — use only for wa.me links. Dark text: white on #25D366 fails contrast. */
-  whatsapp: "bg-wa text-board-deep hover:bg-wa-deep hover:text-paper",
+  /** Charcoal pill, the primary action, Apple-style. */
+  primary: "bg-ink text-white shadow-card hover:bg-ink/85",
+  /** White pill on tinted surfaces. */
+  dark: "bg-white text-ink shadow-card hover:shadow-lift",
+  /** Quiet outline. */
+  outline: "border border-ink/20 bg-transparent text-ink hover:border-ink hover:bg-white",
+  /** WhatsApp-branded, wa.me links only. */
+  whatsapp: "bg-wa text-ink hover:bg-wa-deep hover:text-white",
 } as const;
 
 const sizes = {
@@ -30,6 +25,8 @@ type Props = {
   size?: keyof typeof sizes;
   /** Appends an arrow that nudges right on hover. */
   arrow?: boolean;
+  /** Prepends a plus glyph (template's "Schedule a Tour" style). */
+  plus?: boolean;
   /** Prepends the WhatsApp glyph. */
   wa?: boolean;
   external?: boolean;
@@ -45,6 +42,7 @@ export default function Button({
   variant = "primary",
   size = "md",
   arrow = false,
+  plus = false,
   wa = false,
   external = false,
   type = "button",
@@ -53,8 +51,8 @@ export default function Button({
   ariaLabel,
 }: Props) {
   const classes = cn(
-    "group inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full font-semibold",
-    "transition-all duration-300 ease-out active:scale-[0.98]",
+    "group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold",
+    "transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]",
     variants[variant],
     sizes[size],
     className
@@ -62,6 +60,7 @@ export default function Button({
 
   const content = (
     <>
+      {plus && <Plus className="size-[1.1em] shrink-0" aria-hidden="true" />}
       {wa && <WhatsAppIcon className="size-[1.15em] shrink-0" />}
       <span>{children}</span>
       {arrow && (

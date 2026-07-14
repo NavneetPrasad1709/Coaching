@@ -26,7 +26,7 @@ type Props = {
 
 /**
  * Word-by-word masked text reveal for headlines. Reduced motion is handled
- * globally by MotionProvider — the transform simply doesn't animate.
+ * globally by MotionProvider, the transform simply doesn't animate.
  */
 export default function TextReveal({
   text,
@@ -50,14 +50,15 @@ export default function TextReveal({
           : { whileInView: "visible", viewport: VIEWPORT })}
       >
         {words.map((word, i) => (
-          <span
-            key={i}
-            className="inline-block overflow-hidden pb-[0.08em] mb-[-0.08em] align-bottom"
-          >
-            <motion.span variants={wordV} className="inline-block">
-              {word}
-              {i < words.length - 1 ? " " : ""}
-            </motion.span>
+          // The space lives OUTSIDE the inline-block mask, a trailing space
+          // inside an inline-block is trimmed by the browser and words jam.
+          <span key={i}>
+            <span className="inline-block overflow-hidden pb-[0.08em] mb-[-0.08em] align-bottom">
+              <motion.span variants={wordV} className="inline-block">
+                {word}
+              </motion.span>
+            </span>
+            {i < words.length - 1 ? " " : ""}
           </span>
         ))}
       </motion.span>

@@ -1,6 +1,6 @@
 /*
   All page content lives here so copy can be edited without touching components.
-  Items marked TODO(client) are representative placeholders — replace with real
+  Items marked TODO(client) are representative placeholders, replace with real
   numbers, names and quotes before launch.
 */
 
@@ -43,7 +43,7 @@ export const whyChoose: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: ClipboardCheck,
     title: "Matched to your child, not a roster",
-    body: "We match on class, board, subject, temperament and learning pace — not on whoever is free.",
+    body: "We match on class, board, subject, temperament and learning pace, not on whoever is free.",
   },
   {
     icon: LineChart,
@@ -91,7 +91,7 @@ export const services: {
   {
     icon: Users,
     title: "Small group classes",
-    body: "Groups of 4–6 students of the same class and board. Peer energy, personal attention.",
+    body: "Groups of 4-6 students of the same class and board. Peer energy, personal attention.",
     points: ["Max 6 students", "Same board, same level", "Lower fee per student"],
   },
   {
@@ -105,19 +105,19 @@ export const services: {
 /* ---------------- Classes & boards ---------------- */
 export const classGroups = [
   {
-    range: "Classes 5–7",
+    range: "Classes 5-7",
     stage: "Foundation",
     note: "Habits, basics and curiosity. We fix gaps before they become fear.",
     classes: ["5", "6", "7"],
   },
   {
-    range: "Classes 8–10",
+    range: "Classes 8-10",
     stage: "Secondary",
     note: "Concept depth and exam technique. Class 10 boards are prepared for from Class 8.",
     classes: ["8", "9", "10"],
   },
   {
-    range: "Classes 11–12",
+    range: "Classes 11-12",
     stage: "Senior Secondary",
     note: "Stream-specialist tutors for Science and Commerce, with board + entrance alignment.",
     classes: ["11", "12"],
@@ -140,15 +140,15 @@ export const boards = [
 /* ---------------- Subjects ---------------- */
 export const subjectGroups = [
   {
-    group: "Core (Classes 5–10)",
+    group: "Core (Classes 5-10)",
     subjects: ["Mathematics", "Science", "English", "Hindi", "Social Science"],
   },
   {
-    group: "Science stream (11–12)",
+    group: "Science stream (11-12)",
     subjects: ["Physics", "Chemistry", "Biology", "Mathematics"],
   },
   {
-    group: "Commerce stream (11–12)",
+    group: "Commerce stream (11-12)",
     subjects: ["Accountancy", "Economics", "Business Studies"],
   },
   {
@@ -182,7 +182,7 @@ export const steps: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: CalendarCheck,
     title: "Take a free demo class",
-    body: "We shortlist a tutor and schedule a no-obligation demo within 24–48 hours. You and your child decide.",
+    body: "We shortlist a tutor and schedule a no-obligation demo within 24-48 hours. You and your child decide.",
   },
   {
     icon: UserRound,
@@ -192,7 +192,7 @@ export const steps: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: LineChart,
     title: "See the progress, monthly",
-    body: "Monthly tests, a written progress report, and a parent call. If it isn't working, we replace the tutor — free.",
+    body: "Monthly tests, a written progress report, and a parent call. If it isn't working, we replace the tutor, free.",
   },
 ];
 
@@ -209,7 +209,7 @@ export const teachers = [
   },
   {
     name: "Priya Mishra",
-    role: "Physics & Chemistry (11–12)",
+    role: "Physics & Chemistry (11-12)",
     credentials: "M.Sc. Physics, B.Ed.",
     experience: "8 years",
     note: "Board-exam specialist. Known for making numericals feel routine.",
@@ -263,7 +263,7 @@ export const successStories = [
     after: 84,
     subject: "Science",
     quote:
-      "The demo class told us everything — the teacher asked Kabir questions for forty minutes before teaching anything.",
+      "The demo class told us everything, the teacher asked Kabir questions for forty minutes before teaching anything.",
     parent: "Father of Kabir",
   },
 ] as const;
@@ -273,7 +273,7 @@ export const successStories = [
 export const reviews = [
   {
     quote:
-      "We tried three tutors from local ads before this. The difference is the follow-up — someone actually checks whether my son improved.",
+      "We tried three tutors from local ads before this. The difference is the follow-up, someone actually checks whether my son improved.",
     name: "Rekha Pandey",
     detail: "Parent, Class 9 CBSE · Prayagraj",
   },
@@ -312,17 +312,17 @@ export const trustPoints: { icon: LucideIcon; title: string; body: string }[] = 
   {
     icon: RefreshCcw,
     title: "Free tutor replacement",
-    body: "If the fit isn't right, we replace the tutor at no cost — no awkward conversation needed.",
+    body: "If the fit isn't right, we replace the tutor at no cost, no awkward conversation needed.",
   },
   {
     icon: FileSpreadsheet,
     title: "Written monthly reports",
-    body: "Test scores, chapters covered and next month's plan — on paper, every month.",
+    body: "Test scores, chapters covered and next month's plan, on paper, every month.",
   },
   {
     icon: Clock3,
     title: "Your timings, not ours",
-    body: "Early morning, after school, weekends — the timetable is built around your child's day.",
+    body: "Early morning, after school, weekends, the timetable is built around your child's day.",
   },
   {
     icon: Wallet,
@@ -335,7 +335,7 @@ export const trustPoints: { icon: LucideIcon; title: string; body: string }[] = 
 export const faqs = [
   {
     q: "How does the free demo class work?",
-    a: "Share your child's class, board and subject on WhatsApp or the enquiry form. Within 24–48 hours we schedule a demo with a shortlisted tutor — at your home, online, or at our centre. There's no fee and no obligation to continue.",
+    a: "Share your child's class, board and subject on WhatsApp or the enquiry form. Within 24-48 hours we schedule a demo with a shortlisted tutor, at your home, online, or at our centre. There's no fee and no obligation to continue.",
   },
   {
     q: "Which areas of Prayagraj and Varanasi do you cover?",
@@ -343,23 +343,27 @@ export const faqs = [
   },
   {
     q: "What are the monthly fees?",
-    a: "Fees depend on the class, subject and format — group classes cost less than one-to-one home tuition. We share the exact fee before the demo class, and there is no joining or registration fee.",
+    a: "Fees depend on the class, subject and format, group classes cost less than one-to-one home tuition. We share the exact fee before the demo class, and there is no joining or registration fee.",
   },
   {
     q: "What if the tutor isn't the right fit?",
-    a: "Tell us — that's all. We arrange a replacement tutor at no extra cost. You don't have to have the awkward conversation with the tutor yourself.",
+    a: "Tell us, that's all. We arrange a replacement tutor at no extra cost. You don't have to have the awkward conversation with the tutor yourself.",
   },
   {
     q: "Do you teach both CBSE and ICSE?",
-    a: "Yes. Tutors are matched by board as well as subject, because the two boards demand different preparation styles — NCERT-focused practice for CBSE, and broader, detail-heavy coverage for ICSE.",
+    a: "Yes. Tutors are matched by board as well as subject, because the two boards demand different preparation styles, NCERT-focused practice for CBSE, and broader, detail-heavy coverage for ICSE.",
   },
   {
     q: "How do online classes work?",
     a: "Live one-to-one classes on Google Meet or Zoom with a digital whiteboard. Your child gets the same tutor every class, homework after each session, and the class notes as a PDF.",
   },
   {
+    q: "Can I request a female tutor for my daughter?",
+    a: "Yes. Tell us while enquiring and we will shortlist verified female tutors. They are available across Prayagraj and Varanasi for both home and online classes.",
+  },
+  {
     q: "How will I know my child is improving?",
-    a: "Every student takes a monthly test. You receive a written progress report — marks, chapters covered, weak areas, and the plan for next month — plus a parent call with the tutor.",
+    a: "Every student takes a monthly test. You receive a written progress report, marks, chapters covered, weak areas, and the plan for next month, plus a parent call with the tutor.",
   },
 ] as const;
 
@@ -369,4 +373,44 @@ export const formOptions = {
   boards: ["CBSE", "ICSE"],
   tuitionTypes: ["Home tuition", "Online tuition", "Offline coaching"],
   cities: ["Prayagraj", "Varanasi", "Other (online)"],
+} as const;
+
+/* ---------------- Promises that matter most to Indian parents ---------------- */
+export const parentPromises: { icon: LucideIcon; title: string; body: string }[] = [
+  {
+    icon: ShieldCheck,
+    title: "Police-verified tutors",
+    body: "ID, address and background checks before any tutor enters your home.",
+  },
+  {
+    icon: UserRound,
+    title: "Lady tutors available",
+    body: "For daughters, request a female tutor. We arrange one in both cities.",
+  },
+  {
+    icon: MessageSquareText,
+    title: "Hindi & English medium",
+    body: "Tutors teach comfortably in Hindi, English or both, whichever suits your child.",
+  },
+  {
+    icon: FileSpreadsheet,
+    title: "PYQs & sample papers",
+    body: "Class 10 and 12 prep runs on previous-year questions, sample papers and pre-boards.",
+  },
+  {
+    icon: BadgeCheck,
+    title: "Update after every class",
+    body: "A short WhatsApp note after each session: what was taught, what is homework.",
+  },
+  {
+    icon: Wallet,
+    title: "No advance, no lock-in",
+    body: "Simple monthly fees. Pause or stop any month if you are not satisfied.",
+  },
+];
+
+/* ---------------- Localities served (local SEO + relatability) ---------------- */
+export const localities = {
+  Prayagraj: ["Civil Lines", "George Town", "Tagore Town", "Naini", "Jhunsi", "Kareli"],
+  Varanasi: ["Lanka", "Sigra", "Bhelupur", "Mahmoorganj", "Sunderpur", "Sarnath"],
 } as const;

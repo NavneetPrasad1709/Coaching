@@ -13,7 +13,7 @@ export const site = {
   whatsappNumber: "919000000000", // digits only, country code first
   email: "hello@santoshsinghacademy.in", // TODO(client): real email
   cities: ["Prayagraj", "Varanasi"] as const,
-  hours: "Mon–Sat, 8 AM – 9 PM",
+  hours: "Mon-Sat, 8 AM-9 PM",
   nav: [
     { label: "Services", href: "#services" },
     { label: "Subjects", href: "#subjects" },

@@ -1,37 +1,26 @@
 import type { Metadata } from "next";
-import { Spectral, Schibsted_Grotesk, Spline_Sans_Mono } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import MotionProvider from "@/components/providers/MotionProvider";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const spectral = Spectral({
-  variable: "--font-spectral",
+/* One refined neo-grotesque for everything, hierarchy comes from weight,
+   size and tracking, the way enterprise design systems do it. */
+const instrument = Instrument_Sans({
+  variable: "--font-instrument",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-});
-
-const schibsted = Schibsted_Grotesk({
-  variable: "--font-schibsted",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const splineMono = Spline_Sans_Mono({
-  variable: "--font-spline-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: "variable",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.brand} — Home, Online & Offline Tuition in Prayagraj & Varanasi`,
-    template: `%s — ${site.brand}`,
+    default: `${site.brand}, Home, Online & Offline Tuition in Prayagraj & Varanasi`,
+    template: `%s, ${site.brand}`,
   },
   description:
-    "Verified, board-experienced tutors for Classes 5–12 (CBSE & ICSE) in Prayagraj and Varanasi. Home tuition, online classes, one-to-one and small groups. Book a free demo class.",
+    "Verified, board-experienced tutors for Classes 5-12 (CBSE & ICSE) in Prayagraj and Varanasi. Home tuition, online classes, one-to-one and small groups. Book a free demo class.",
   keywords: [
     "home tuition Prayagraj",
     "home tuition Varanasi",
@@ -43,9 +32,9 @@ export const metadata: Metadata = {
     "Class 12 tuition",
   ],
   openGraph: {
-    title: `${site.brand} — The right tutor changes everything`,
+    title: `${site.brand}, The right tutor changes everything`,
     description:
-      "Verified tutors for Classes 5–12, CBSE & ICSE. Home, online and classroom tuition in Prayagraj & Varanasi. Free demo class.",
+      "Verified tutors for Classes 5-12, CBSE & ICSE. Home, online and classroom tuition in Prayagraj & Varanasi. Free demo class.",
     url: site.url,
     siteName: site.brand,
     locale: "en_IN",
@@ -60,14 +49,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${spectral.variable} ${schibsted.variable} ${splineMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${instrument.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-60 focus:rounded-full focus:bg-board focus:px-5 focus:py-3 focus:text-paper"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-60 focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-cream"
         >
           Skip to content
         </a>

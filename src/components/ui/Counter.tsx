@@ -21,7 +21,7 @@ export default function Counter({ to, suffix = "", className, duration = 1.8 }: 
   useEffect(() => {
     if (!inView) return;
     // Reduced motion: jump straight to the final value (async, so SSR markup
-    // and the first client render stay identical — no hydration divergence).
+    // and the first client render stay identical, no hydration divergence).
     if (reduce) {
       const raf = requestAnimationFrame(() => setDisplay(to.toLocaleString("en-IN")));
       return () => cancelAnimationFrame(raf);

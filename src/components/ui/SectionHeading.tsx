@@ -1,45 +1,54 @@
 import { cn } from "@/lib/utils";
-import Eyebrow from "./Eyebrow";
-import Reveal from "./Reveal";
 import TextReveal from "./TextReveal";
+import Reveal from "./Reveal";
+import Sticker from "./Sticker";
 
 type Props = {
-  eyebrow: string;
   title: string;
+  /** Sticker word attached after the headline (template signature). */
+  sticker?: string;
+  stickerColor?: "coral" | "lilac" | "leaf" | "lime" | "ink";
   description?: string;
   align?: "left" | "center";
-  /** Set true on `board` (dark green) sections. */
-  dark?: boolean;
   className?: string;
 };
 
-/** Standard section opener: margin eyebrow → serif headline → lede. */
+/** Big centered black headline with a playful sticker, template-style. */
 export default function SectionHeading({
-  eyebrow,
   title,
+  sticker,
+  stickerColor = "coral",
   description,
-  align = "left",
-  dark = false,
+  align = "center",
   className,
 }: Props) {
   return (
-    <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
-      <Reveal y={12}>
-        <Eyebrow dark={dark} center={align === "center"}>
-          {eyebrow}
-        </Eyebrow>
-      </Reveal>
-      <TextReveal
-        as="h2"
-        text={title}
-        className={cn(
-          "mt-5 text-balance font-display text-4xl font-medium leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.4rem]",
-          dark ? "text-paper" : "text-board"
+    <div className={cn("max-w-3xl", align === "center" ? "mx-auto text-center" : "", className)}>
+      <div className="relative inline-block">
+        <TextReveal
+          as="h2"
+          text={title}
+          className="text-balance font-display text-[2.5rem] font-semibold leading-[1.04] tracking-tight text-ink sm:text-5xl lg:text-6xl"
+        />
+        {sticker && (
+          <Sticker
+            color={stickerColor}
+            rotate={7}
+            delay={0.45}
+            className="absolute -right-6 -top-5 sm:-right-10 sm:-top-6"
+          >
+            {sticker}
+          </Sticker>
         )}
-      />
+      </div>
       {description && (
         <Reveal delay={0.15}>
-          <p className={cn("mt-6 text-lg leading-relaxed", dark ? "text-mist" : "text-muted")}>
+          <p
+            className={cn(
+              "mt-5 text-lg leading-relaxed text-gray",
+              align === "center" && "mx-auto max-w-xl"
+            )}
+          >
             {description}
           </p>
         </Reveal>

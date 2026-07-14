@@ -1,6 +1,6 @@
 /*
   Shared motion vocabulary. Every section uses these so the page moves as one.
-  Ease: confident deceleration; durations 0.6–0.9s; stagger 0.08–0.12s.
+  Ease: confident deceleration; durations 0.6-0.9s; stagger 0.08-0.12s.
 */
 
 import type { Variants } from "motion/react";
